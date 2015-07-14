@@ -1,0 +1,87 @@
+﻿
+<div>
+    <div class="alergenView" ng-controller="AlergenController">
+       
+        <div>
+            <input type="text" ng-model="al.searchString" placeholder="Search Name">
+            <button ng-click="al.get()">Search</button>
+
+            <button ng-click="al.showAdd()" title="Add" class="btn btn-primary pull-right"><i class="icon-white icon-plus"></i> Add </button>
+
+        </div>
+        <br />
+
+       <div ng-if="al.showAlergensTable">
+        <table class="table table-striped table-bordered table-condensed table-hover" align="center">
+
+            <thead>
+                <tr>
+                    <th class="col-sm-1"><font color="E9967A">Items</font></th>
+                    <th><font color="E9967A">Alergen name</font></th>
+                    <th><font color="E9967A">Alergen Abrv</font></th>
+                    <th style="width:20px;"> </th>
+                    <th style="width:20px;"> </th>
+                </tr>
+            </thead>
+
+            <tr ng-repeat="alergen in al.alergens |orderBy:'AlergenName'">
+                <td>{{($index+1) + (5 * (al.pageNumber - 1))}}</td>
+                <td>{{alergen.AlergenName}}</td>
+                <td>{{alergen.Abrv}}</td>
+
+                <td><a ng-click="al.showEdit(alergen)" class="btn btn-small btn-primary">Edit</a></td>
+                <td><a ng-click="al.delete(alergen)" class="btn btn-small btn-danger">Delete</a></td>
+            </tr>           
+        </table>
+                       <button ng-if="al.pageNumber !== 1" class="btn btn-sm btn-warning" ng-click="al.backInAlergensList()">
+                           <span class="glyphicon glyphicon-menu-left"></span>
+                           &laquo; Previous
+                       </button>
+                        
+                       <button ng-if="al.alergens.length === 5" class="btn btn-sm btn-warning pull-right" ng-click="al.nextInAlergensList()">
+                           Next &raquo;
+                           <span class="glyphicon glyphicon-menu-right  col-sm-offset-1"></span>
+                       </button>          
+    </div>
+
+    <div ng-show="al.showEditView">
+
+        <div>
+            <label for="editName"><font color="E9967A">Edit Name:</font></label><br>
+            <input type="text" id="editName" ng-model="al.selected.AlergenName">
+        </div>
+        <div>
+
+            <label for="editAbrv"><font color="E9967A">Edit Abrv:</font></label><br>
+            <input type="text" id="editAbrv" ng-model="al.selected.Abrv">
+        </div>
+        <div>
+            <a href="javascript:void(0);" ng-click="al.put(al.selected)" title="Update">
+                <font color="E9967A"><b>Save</b></font>
+            </a>
+            <a href="javascript:void(0);" ng-click="al.showEditView=false">
+                <font color="E9967A"><b>Cancel</b></font>
+            </a>
+        </div>
+    </div>
+        <div ng-show="al.showAddView">
+
+            <div>
+                <label for="editTitle"><font color="E9967A"><b>Add Name:</b></font></label><br>
+                <input type="text" id="addTitle" ng-model="al.newItem.AlergenName" placeholder="Name">
+            </div>
+            <div>
+                <label for="editAbrv"><font color="E9967A"><b>Add Abrv:</b></font></label><br>
+                <input type="text" id="addAbrv" ng-model="al.newItem.Abrv" placeholder="Abrv">
+            </div>
+            <div>
+                <a href="javascript:void(0);" ng-click="al.post(al.newItem)" title="Update">
+                    <font color="E9967A"><b>Save</b></font>
+                </a>
+                <a href="javascript:void(0);"  ng-click="al.showAddView=false">
+                    <font color="E9967A"><b>Cancel</b></font>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

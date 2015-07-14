@@ -1,0 +1,19 @@
+﻿<div ng-controller="ModalRegisterController" class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" style="display: none;">
+    <script type="text/ng-template" id="app/modals/register/register.html">
+
+            <div class="regmodal-container">
+                <h1>User Registration</h1><br>
+                <form>
+                    <input ng-model="data.registration.email" type="text" placeholder="Email">
+                    <input ng-model="data.registration.userName" type="text" placeholder="Username">
+                    <input ng-model="data.password" type="password" placeholder="Password">
+                    <input type="password" ng-model="data.confirmPassword" placeholder="Confirm password">
+                    <button class="btn btn-primary" ng-click="registerUser(data)">Register</button>
+                    <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+                </form>
+
+            </div>
+ 
+
+    </script>
+</div>

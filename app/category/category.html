@@ -1,0 +1,69 @@
+﻿
+<div>
+    <div class="categoryView" ng-controller="CategoryController">
+
+
+        <div>
+            <input type="text" ng-model="ct.searchString" placeholder="Search Name">
+            <button ng-click="ct.get()">Search</button>
+            <button ng-click="ct.showAdd()" title="Add" class="btn btn-primary pull-right"><i class="icon-white icon-plus"></i> Add </button>
+        </div>
+        <br />
+
+
+
+
+        <table ng-if="ct.showCategoryTable" class="table table-bordered table-hover" align="center">
+
+            <thead>
+
+                <tr>
+                    <th data-field="name" data-sortable="true"></th>
+                    <th data-field="name" data-sortable="true"><font color="E9967A">CategoryName</font></th>
+                    <th data-field="abrv" data-sortable="true"><font color="E9967A">Category Abrv</font></th>
+                    <th style="width:20px;"> </th>
+                   
+                </tr>
+
+
+            </thead>
+
+            <tr ng-repeat="category in ct.categorys">
+
+                <td class="tdCenter"><a href="#"><img ng-src="images/category/kifla.png" alt="{{category.CategoryName}}" /></a></td>
+                <td>{{category.CategoryName}}</td>
+                <td>{{category.Abrv}}</td>
+
+                <td><a ng-click="ct.showEdit(category)" class="btn btn-small btn-primary">Edit</a></td>
+               
+            </tr>
+        </table>
+
+
+      
+        <div ng-show="ct.showEditView">
+
+            <div>
+                <label for="editName"><font color="E9967A">Edit Name:</font></label><br>
+                <input type="text" id="editName" ng-model="ct.selected.CategoryName" placeholder="Name">
+            </div>
+            <div>
+
+                <label for="editAbrv"><font color="E9967A">Edit Abrv:</font></label><br>
+                <input type="text" id="editAbrv" ng-model="ct.selected.Abrv" placeholder="Abrv">
+            </div>
+            <div>
+                <a href="javascript:void(0);" ng-click="ct.put(ct.selected)" title="Update">
+                    <font color="E9967A"><b>Save</b></font>
+                </a>
+                <a href="javascript:void(0);" ng-click="ct.showEditView=false">
+                    <font color="E9967A"><b>Cancel</b></font>
+                </a>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>

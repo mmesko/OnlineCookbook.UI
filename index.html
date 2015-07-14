@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <title>OnlineCookbook </title>
+    <!-- Style sheets -->
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="Content/app.css" rel="stylesheet" />
+</head>
+
+<body ng-app="onlineCookbook" bg>
+    <div class="container" ng-app="onlineCookbook">
+        <!-- Menu navigation -->
+        <div ng-controller="NavigationController as vm">
+
+            <!-- NAVIGATION -->
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <img class="nav navbar-nav navbar-left" src="images/mylogo.png">
+                    <a class="navbar-brand"><font color="E9967A">OnlineCookBook</font></a>
+
+                    <div class="navbar-collapse collapse">
+
+                        <!-- Menu -->
+
+                        <ul class="nav navbar-nav" ng-repeat="menu in menus" ng-class="{'dropdown-submenu' : menu.submenus && menu.submenus.length}" ng-click="vm.showChilds($index)">
+                            <!-- :: one way binding -->
+                            <li class="{{menu.active}}">
+                                <a href="{{menu.link}}" ng-click="vm.setActive($index)"><font color="E9967A">{{::menu.name}}</font></a>
+                                <ul>
+                                    <li ng-repeat="submenu in menu.submenus" ng-show="menu.active">
+                                        <a href="{{submenu.link}}" ng-click="vm.setActive($index)">{{::submenu.name}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <!-- User signed out-->
+                        <div ng-show="vm.loggedOut">
+                            <a class="navbar-text pull-right" ng-click="vm.registerClick()"><span class="glyphicon glyphicon-user"><font color="E9967A">{{vm.authRegister.name}}</font></span></a>
+                            <a class="navbar-brand pull-right" ng-click="vm.loginClick()"><font color="E9967A">{{vm.authUser.name}}</font></a>
+                        </div>
+
+                        <!-- Drop down menu, user signed in -->
+                        <div ng-show="vm.loggedIn === true">
+                            <a class="dropdown" data-toggle="dropdown"><font color="E9967A">Hello {{vm.user}}</font><span class="caret"></span></a>
+
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="{{vm.account.link}}"><font color="E9967A">{{vm.account.name}}</font></a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{vm.logout.link}}" ng-click="vm.logoutClick()"><font color="E9967A">{{vm.logout.name}}</font></a></li>
+                           </ul>
+                        </div>                   
+                    </div>                
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div ng-view></div>
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <p class="muted credit"><font color="E9967A">Developed by:</font> <a href="http://mmesko00@gmail.com">mmesko</a></p>
+        </div>
+    </div>
+
+    <!-- Library Scripts -->
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-route.js"></script>
+
+    <!-- Needed for bootstrap.js -->
+    <script src="scripts/jquery-2.1.4.js"></script>
+
+    <!--Needed for the drop down menu-->
+    <script src="scripts/bootstrap.js"></script>
+    <script src="scripts/ui-bootstrap-tpls-0.13.0.min.js"></script> <!-- Angular UI for modals -->
+
+    <!-- Application Script -->
+    <script src="app/app.js"></script>
+
+    <!-- Alergen -->
+    <script src="app/alergen/alergen.controller.js"></script>
+    <script src="app/alergen/alergen.service.js"></script>
+
+    <!--Ingradient-->
+    <script src="app/ingradient/ingradient.controller.js"></script>
+    <script src="app/ingradient/ingradient.service.js"></script>
+
+    <!--Category-->
+    <script src="app/category/category.controller.js"></script>
+    <script src="app/category/category.service.js"></script>
+
+    <!-- Filters -->
+    <script src="app/filters/password.filter.js"></script>
+
+    <!-- Services --> 
+    <script src="app/services/auth.service.js"></script>
+    <script src="app/services/constant.service.js"></script>
+
+    <!-- Modal -->
+    <script src="app/modals/register/registerModal.controller.js"></script>
+    <script src="app/modals/login/loginModal.controller.js"></script>
+
+    <!-- Navigation -->
+    <script src="app/navigation/navigation.controller.js"></script>
+
+    <!-- Account -->
+    <script src="app/account/account.controller.js"></script>
+    <script src="app/account/account.service.js"></script>
+   
+
+</body>
+</html>

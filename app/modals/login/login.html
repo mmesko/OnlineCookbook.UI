@@ -1,0 +1,20 @@
+﻿<div ng-controller="ModalLoginController" class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <script type="text/ng-template" id="app/modals/login/login.html">
+
+        
+            <div class="loginmodal-container">
+                <h1>Login to Your Account</h1><br>
+                <form>
+
+                    <input ng-model="user.userName" type="text" placeholder="Username">
+                    <input ng-model="user.password" type="password" placeholder="Password">
+                    <button class="btn btn-primary" ng-click="userLogin(user)">Login</button>
+                    <button class="btn btn-danger" ng-click="cancel()">Close</button>
+                </form>
+
+            </div>
+
+     
+
+    </script>
+</div>
