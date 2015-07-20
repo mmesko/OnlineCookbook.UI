@@ -14,14 +14,15 @@
                 <td></td>
                 <td><strong>Recipe</strong></td>
                 <td><strong>Description</strong></td>
+                <td>Details</td>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="recipe in vm.recipes">
                 <td>{{$index + 1}}.</td>
-                <td><a ng-click="vm.goToRecipe(recipe)">{{recipe.RecipeTitle}}</a></td>
+                <td>{{recipe.RecipeTitle}}</td>
                 <td>{{recipe.RecipeDescription}}</td>
-                
+                <td><a ng-click="vm.goToRecipe(recipe)">show details</a></td>
             </tr>
 
         </tbody>

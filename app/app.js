@@ -35,7 +35,7 @@
                     controller: 'RecipeController',
                     controllerAs: 'vm'
                 })
-                 .when('/recipe/:recipeTitle/:recipeId', {
+                 .when('/recipe/:Id', {
                      templateUrl: 'app/recipe/recipeView.html',
                      controller: 'RecipeController',
                      controllerAs: 'vm',

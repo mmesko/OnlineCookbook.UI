@@ -39,7 +39,8 @@
                 };
         
                 vm.goToRecipe = function (recipe) {
-                    $location.path('/recipe/recipeView.html' + recipe.RecipeTitle + "/" + recipe.Id);
+                    $location.path('/recipe/recipeView.html' + recipe.Id);
+                    vm.recipes = recipe;
               
                 }
                  
