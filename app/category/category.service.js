@@ -2,8 +2,8 @@
 
     'use strict';
 
-    angular.module("onlineCookbook").service("categoryService", ['$http', 'BASE_CONSTS',
-    function ($http,BASE_CONSTS) {
+    angular.module("onlineCookbook").service("categoryService", ['$http', 'routePrefix',
+    function ($http, routePrefix) {
 
             
 
@@ -12,12 +12,12 @@
                 // Get alergen by name
                 getCategoryByName: function (name) {
                     
-                    return $http.get(BASE_CONSTS.CATEGORY + "/getByName/" + name);
+                    return $http.get(routePrefix.category + "/getByName/" + name);
                 },
 
                 // Get alergens
                 getCategorys: function (pageNumber, pageSize) {
-                    return $http.get(BASE_CONSTS.CATEGORY + "/" + pageNumber + "/" + pageSize);
+                    return $http.get(routePrefix.category + "/" + pageNumber + "/" + pageSize);
                 },
 
      
@@ -26,7 +26,7 @@
                     return $http({
 
                         method: 'put',
-                        url: BASE_CONSTS.CATEGORY + "/" + data.Id,
+                        url: routePrefix.category + "/" + data.Id,
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         data: $.param(data)
 

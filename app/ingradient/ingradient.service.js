@@ -2,8 +2,8 @@
 
     'use strict';
 
-    angular.module("onlineCookbook").service("ingradientService", ['$http', 'BASE_CONSTS', 
-        function ($http, BASE_CONSTS) {
+    angular.module("onlineCookbook").service("ingradientService", ['$http', 'routePrefix',
+        function ($http, routePrefix) {
 
            
 
@@ -12,12 +12,12 @@
                 // Get alergen by name
                 getIngradientsByName: function (name) {
 
-                    return $http.get(BASE_CONSTS.INGRADIENT + "/getByName/" + name);
+                    return $http.get(routePrefix.ingradient + "/getByName/" + name);
                 },
 
                 // Get alergens
                 getIngradients: function (pageNumber, pageSize) {
-                    return $http.get(BASE_CONSTS.INGRADIENT + "/" + pageNumber + "/" + pageSize);
+                    return $http.get(routePrefix.ingradient + "/" + pageNumber + "/" + pageSize);
                 },
 
 
@@ -27,7 +27,7 @@
                     return $http({
 
                         method: 'put',
-                        url: BASE_CONSTS.INGRADIENT + "/" + data.Id,
+                        url: routePrefix.ingradient + "/" + data.Id,
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         data: $.param(data)
 
@@ -40,7 +40,7 @@
                     return $http({
 
                         method: 'post',
-                        url: BASE_CONSTS.INGRADIENT + "/",
+                        url: routePrefix.ingradient + "/",
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         data: $.param(data)
                     })
@@ -52,7 +52,7 @@
                     return $http({
 
                         method: 'delete',
-                        url: BASE_CONSTS.INGRADIENT + "/" + id,
+                        url: routePrefix.ingradient + "/" + id,
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         data: $.param(id)
 

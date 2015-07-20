@@ -2,41 +2,42 @@
 
     'use strict';
 
-    angular.module("onlineCookbook").service('alergenService', ['$http', 'routePrefix',
+    angular.module("onlineCookbook").service('recipeService', ['$http', 'routePrefix',
         function ($http, routePrefix) {
 
-            
+
 
             return {
 
                 // Get alergen by name
-                getAlergensByName: function (name) {
-                    return $http.get(routePrefix.alergen + "/getByName/" + name);
+                getRecipesByName: function (name) {
+                    return $http.get(routePrefix.recipe + "/getByName/" + name);
                 },
 
                 // Get alergens
-                getAlergens: function (pageNumber, pageSize){
+                getRecipes: function (pageNumber, pageSize) {
                     console.log('dsaff');
-                    return $http.get(routePrefix.alergen + "/" + pageNumber + "/" + pageSize);
+                    return $http.get(routePrefix.recipe + "/" + pageNumber + "/" + pageSize);
                 },
 
-                postAlergen: function (data) {
+                postRecipe: function (data) {
                     console.log($.param(data));
                     return $http({
 
                         method: 'post',
-                        url: routePrefix.alergen + "/",
+                        url: routePrefix.recipe + "/",
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         data: $.param(data)
 
-                    })},
+                    })
+                },
 
-                putAlergen: function (data) {
+                putRecipe: function (data) {
                     console.log($.param(data));
                     return $http({
 
                         method: 'put',
-                        url: routePrefix.alergen + "/" + data.Id,
+                        url: routePrefix.recipe + "/" + data.Id,
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         data: $.param(data)
 
@@ -44,10 +45,9 @@
                 },
 
                 // delete from db
-                deleteAlergen: function (id) {
+                deleteRecipe: function (id) {
                     console.log($.param(id));
                     return $http({
-
                         method: 'delete',
                         url: routePrefix.alergen + "/" + id,
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -55,13 +55,6 @@
 
                     })
                 }
-
-
-
-              
-
-
-             
 
 
             }

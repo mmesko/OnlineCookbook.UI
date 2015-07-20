@@ -6,7 +6,7 @@
         .controller('AlergenController', ['alergenService', '$window', '$scope',
             function (alergenService, $window, $scope) {
 
-                var al = $scope.al = this;
+                var al = $scope.al = {};
                
                 al.alergens = [];
                 al.alergen = null;
@@ -16,56 +16,41 @@
                 al.showAlergensTable = true;
                 //new item added
                 al.newItem = {};
-
                //detail and views
                 al.showDetails = false;
                 al.showEditView = false;
                 al.showAddView = false;
-
                 //pagination
                 al.pageNumber = 1;
                 var pageSize = 5; // 5 alergens per page
 
-                al.showAdd = function () {
-                    al.showAddView = true;
-                    al.showEditView = false;
-                    al.showDetails = false;
-                };
 
-               
-               
                 al.get = function () {
 
                     if (al.searchString.length > 0) {
                        
                         alergenService.getAlergensByName(al.searchString).success(function (data) {
                             al.alergens = data;
-                            
                         }).error(function (error) {
-                            al.status = 'Unable to get alergen: ' + error.message;
+                            console.log('Unable to get alergen: ' + error.message);
                         });
                     }
                     else {
                         //inace mi dohvati sve
                         alergenService.getAlergens(al.pageNumber, pageSize).success(function (data) {
-                            
                             al.alergens = data;
-
                         }).error(function (error) {
-                            al.status = 'Unable to get alergen: ' + error.message;
+                            console.log('Unable to get alergen: ' + error.message);
                         });
                     }
 
                 };
 
-                //get alergen details
-                //al.getAlergenDetails = function (item) {
-
-                //    al.alergens = [];
-                //    al.alergens.push(item);
-                //    al.showAlergensTable = true;
-                //    al.showDetails = true;
-                //}
+                al.showAdd = function () {
+                    al.showAddView = true;
+                    al.showEditView = false;
+                    al.showDetails = false;
+                };
 
                 al.showEdit = function (item) {
                     al.selected = {};
@@ -101,7 +86,7 @@
 
 
               al.put = function (item) {
-                    console.log('maja');
+                   
                     al.selected.AlergenName = item.AlergenName;
                     al.selected.Abrv = item.Abrv;
                     al.selected.Id = item.Id;
@@ -109,14 +94,14 @@
                     alergenService.putAlergen(al.selected)
                        .success(function (data) {
                            al.selected = data;
-                           $window.alert("Alergen changed!");
+                           console.log($window.alert("Alergen changed!"));
                            al.showEdit();
                        })
                        .error(function (data) {
                            
                            $window.alert("Name already exist!");
                            console.log(al.selected);
-                           console.log(data);
+                           console.log(data); // error 
                            al.get();
                            
                        });
@@ -131,16 +116,14 @@
 
                   alergenService.postAlergen(item)
                         .success(function (data) {
-                            
                             console.log(data);
                             $window.alert("Added successfully!");
                             al.get();
                             al.selected = {};
                         })
                         .error(function (data) {
-                            console.log('greska');
-                            $window.alert("Cannot be added!");
-                            console.log(data);
+                            console.log($window.alert("Cannot be added!"));
+                            console.log(data); //error
                         });
                 };
 
@@ -152,7 +135,7 @@
                       alergenService.deleteAlergen(item.Id)
                           .success(function (data) {
                               console.log(data);
-                              $window.alert("Deleted");
+                              console.log($window.alert("Deleted"));
                               al.get();
                               al.selected = {};
                               
@@ -162,10 +145,6 @@
                           });
                   }
               };
-
-            
-             
-            
 
             }]); 
 })(angular);

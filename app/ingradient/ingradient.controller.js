@@ -6,7 +6,7 @@
         .controller('IngradientController', ['ingradientService', '$window', '$scope',
             function (ingradientService, $window, $scope) {
 
-                var ig = $scope.ig = this;
+                var ig = $scope.ig = {};
 
                 ig.ingradients = [];
                 ig.ingradient = null;

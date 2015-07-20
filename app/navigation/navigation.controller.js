@@ -20,7 +20,7 @@
         // Nav controller is first loaded controller and is alive all time 
         $location.path("#/");  
 
-        var vm = this;
+        var vm = $scope.vm = {};
 
         vm.loggedIn = false;
         vm.loggedOut = true;
@@ -41,7 +41,7 @@
         $scope.menus =
             [
                 { name: "Home", link: "#/", active: "active" },
-                { name: "Recipes", link: "#/", active: "", submenus: [{name: 'Category', link: "#/category", active:""}]},
+                { name: "Recipes", link: "#/recipe", active: "", submenus: [{name: 'Category', link: "#/category", active:""}]},
                 { name: "Alergens", link: "#searchByAlergen", active: "" },
                 { name: "Ingradients", link: "#/searchByIngradient", active: "" },
     

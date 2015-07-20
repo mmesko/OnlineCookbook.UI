@@ -1,12 +1,12 @@
 ﻿(function (angular) {
 
     angular.module("onlineCookbook").service("userService", [
-        '$http', '$window', 'BASE_CONSTS',
-        function ($http, $window, BASE_CONSTS) {
+        '$http', '$window', 'routePrefix',
+        function ($http, $window, routePrefix) {
 
             return {
                 getUserByUsername: function (username) {
-                    return $http.get(BASE_CONSTS.BASE + "/" + username);
+                    return $http.get(routePrefix.base + "/" + username);
                 },
 
                 // Updates user username or email
@@ -16,7 +16,7 @@
 
                     return $http({
                         method: 'put',
-                        url: BASE_CONSTS.BASE + "/UpdateUserOrMail",
+                        url: routePrefix.base + "/UpdateUserOrMail",
                         headers: { 'Authorization': 'Bearer ' + token },
                         data: {
                             user: user,
@@ -31,7 +31,7 @@
 
                     return $http({
                         method: 'put',
-                        url: BASE_CONSTS.BASE + "/UpdatePassword",
+                        url: routePrefix.base + "/UpdatePassword",
                         headers: { 'Authorization': 'Bearer ' + token },
                         data: {
                             userId: userId,

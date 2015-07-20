@@ -6,7 +6,7 @@
         .controller('CategoryController', ['categoryService', '$window','$scope',
             function (categoryService, $window, $scope) {
 
-                var ct = $scope.ct = this;
+                var ct = $scope.ct = {};
 
                 ct.categorys = [];
                 ct.category = null;
@@ -24,7 +24,7 @@
 
                 //pagination
                 ct.pageNumber = 1;
-                var pageSize = 10; // 10 alergens per page
+                var pageSize = 5; // 10 alergens per page
 
                 //add url for image
                

@@ -1,7 +1,7 @@
 ﻿(function (angular) {
 
     angular.module("onlineCookbook").service('authService',
-        ['$http', '$q', '$window', 'BASE_CONSTS', function ($http, $q, $window, BASE_CONSTS) {
+        ['$http', '$q', '$window', "routePrefix", function ($http, $q, $window, routePrefix) {
 
  
             return {
@@ -18,7 +18,7 @@
 
                     return $http({
                         method: 'post',
-                        url: BASE_CONSTS.BASE + "/token",
+                        url: routePrefix.base + "/token",
                         header: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         data: data
                     });
@@ -29,7 +29,7 @@
 
                     return $http({
                         method: 'post',
-                        url: BASE_CONSTS.BASE + "/api/user/register",
+                        url: routePrefix.base + "/api/user/register",
                         header: { 'Content-Type': 'application/json' },
                         data: {
                             user: registration,

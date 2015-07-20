@@ -30,7 +30,17 @@
                     controller: 'AccountController',
                     controllerAs: 'vm'
                 })
-               
+                .when('/recipe', {
+                    templateUrl: 'app/recipe/recipe.html',
+                    controller: 'RecipeController',
+                    controllerAs: 'vm'
+                })
+                 .when('/recipe/:recipeTitle/:recipeId', {
+                     templateUrl: 'app/recipe/recipeView.html',
+                     controller: 'RecipeController',
+                     controllerAs: 'vm',
+                     reloadOnSearch: false
+                 })
                 .otherwise({
                     redirectTo: '/'
                 })
