@@ -35,12 +35,8 @@
                     controller: 'RecipeController',
                     controllerAs: 'vm'
                 })
-                 .when('/recipe/:Id', {
-                     templateUrl: 'app/recipe/recipeView.html',
-                     controller: 'RecipeController',
-                     controllerAs: 'vm',
-                     reloadOnSearch: false
-                 })
+                
+                
                 .otherwise({
                     redirectTo: '/'
                 })

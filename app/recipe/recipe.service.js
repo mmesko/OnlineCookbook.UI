@@ -2,8 +2,8 @@
 
     'use strict';
 
-    angular.module("onlineCookbook").service('recipeService', ['$http', 'routePrefix',
-        function ($http, routePrefix) {
+    angular.module("onlineCookbook").service('recipeService', ['$http', 'routePrefix', '$window',
+        function ($http, routePrefix, $window) {
 
 
 
@@ -14,6 +14,10 @@
                     return $http.get(routePrefix.recipe + "/getByName/" + name);
                 },
 
+                getRecipesByCategory: function (categoryId, pageNumber, pageSize) {
+                    return $http.get(routePrefix.recipe + "/" + categoryId + "/" + pageNumber + "/" + pageSize);
+                },
+
                 // Get alergens
                 getRecipes: function (pageNumber, pageSize) {
                     console.log('dsaff');
@@ -21,19 +25,23 @@
                 },
 
                 postRecipe: function (data) {
-                    console.log($.param(data));
+
+                    var token = $window.localStorage.token;
+
                     return $http({
 
                         method: 'post',
                         url: routePrefix.recipe + "/",
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        headers: {'Authorization': 'Bearer ' + token},
                         data: $.param(data)
 
                     })
                 },
 
                 putRecipe: function (data) {
-                    console.log($.param(data));
+
+                   
+
                     return $http({
 
                         method: 'put',
@@ -49,7 +57,7 @@
                     console.log($.param(id));
                     return $http({
                         method: 'delete',
-                        url: routePrefix.alergen + "/" + id,
+                        url: routePrefix.recipe + "/" + id,
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         data: $.param(id)
 
