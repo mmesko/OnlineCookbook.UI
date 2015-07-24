@@ -46,11 +46,12 @@
                 };
         
                 vm.getItemDetails = function (item) {
+                    vm.recipes= [];                //Empty array
+                    vm.recipe = item;
                     vm.showTable = false;
-                    vm.selected = item;
                     vm.showDetails = true;
                     
-                    recipeService.getImages(vm.selected.Id, 1, 1).success(function (data) {
+                    recipeService.getImages(vm.recipe.Id, 1, 1).success(function (data) {
                           vm.recipeImages = data;
                     });
                     

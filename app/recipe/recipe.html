@@ -21,23 +21,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="recipe in vm.recipes">
+            <tr ng-repeat="item in vm.recipes">
                 <td>{{$index + 1}}.</td>
-                <td>{{recipe.RecipeTitle}}</td>
-                <td>{{recipe.RecipeDescription}}</td>
-                <td>{{recipe.RecipeComplexity}}</td>
-                <td><a ng-click="vm.getItemDetails(recipe)">show recipe</a></td>
-                <td><a ng-click="vm.showEdit(recipe)" class="btn btn-small btn-primary">Edit</a></td>
-                <td>  <a ng-click="vm.delete(recipe)" class="btn btn-small btn-danger">Delete</a></td> 
+                <td>{{item.RecipeTitle}}</td>
+                <td>{{item.RecipeDescription}}</td>
+                <td>{{item.RecipeComplexity}}</td>
+                <td><a ng-click="vm.getItemDetails(item)">show recipe</a></td>
+                <td><a ng-click="vm.showEdit(item)" class="btn btn-small btn-primary">Edit</a></td>
+                <td>  <a ng-click="vm.delete(item)" class="btn btn-small btn-danger">Delete</a></td> 
 </tr>
 
         </tbody>
     </table>
 
     <div ng-if="vm.showDetails" align="center">
-        <h3><font color="E9967A"> {{vm.selected.RecipeTitle}} </font></h3><br />
-
-      
+        <h3><font color="E9967A"> {{vm.recipe.RecipeTitle}} </font></h3><br />
 
         
         <div class="col-sm-offset-1 col-sm-4">
@@ -47,9 +45,9 @@
             </div>
         </div>
 
-        <h4><b>{{vm.selected.RecipeDescription}}</b></h4><br />
-        <h4>{{vm.selected.RecipeComplexity}},{{vm.selected.Abrv}}</h4><br />
-        <h5>{{vm.selected.RecipeText}}</h5><br />
+        <h4><b>{{vm.recipe.RecipeDescription}}</b></h4><br />
+        <h4>{{vm.recipe.RecipeComplexity}},{{vm.selected.Abrv}}</h4><br />
+        <h5>{{vm.recipe.RecipeText}}</h5><br />
         
     </div>
 
