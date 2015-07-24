@@ -28,8 +28,8 @@
                 <td>{{item.RecipeComplexity}}</td>
                 <td><a ng-click="vm.getItemDetails(item)">show recipe</a></td>
                 <td><a ng-click="vm.showEdit(item)" class="btn btn-small btn-primary">Edit</a></td>
-                <td>  <a ng-click="vm.delete(item)" class="btn btn-small btn-danger">Delete</a></td> 
-</tr>
+                <td><a ng-click="vm.delete(item)" class="btn btn-small btn-danger">Delete</a></td> 
+             </tr>
 
         </tbody>
     </table>
@@ -46,7 +46,7 @@
         </div>
 
         <h4><b>{{vm.recipe.RecipeDescription}}</b></h4><br />
-        <h4>{{vm.recipe.RecipeComplexity}},{{vm.selected.Abrv}}</h4><br />
+        <h4>{{vm.recipe.RecipeComplexity}},{{vm.recipe.Abrv}}</h4><br />
         <h5>{{vm.recipe.RecipeText}}</h5><br />
         
     </div>

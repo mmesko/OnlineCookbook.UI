@@ -18,14 +18,15 @@
                     return $http.get(routePrefix.recipe + "/" + categoryId + "/" + pageNumber + "/" + pageSize);
                 },
 
-                // Get alergens
+                
                 getRecipes: function (pageNumber, pageSize) {
-                    console.log('dsaff');
+                   
                     return $http.get(routePrefix.recipe + "/" + pageNumber + "/" + pageSize);
                 },
 
-                // Get images that belong to game
+                // Get images that belong to recipe
                 getImages: function (recipeId, pageNumber, pageSize) {
+                    
                     return $http.get(routePrefix.images + "/" + recipeId + "/" + pageNumber + "/" + pageSize);
                 },
 
