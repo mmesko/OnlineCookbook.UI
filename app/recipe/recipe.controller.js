@@ -19,8 +19,8 @@
                 vm.showAddView = false;
                 vm.showEditView = false;
                 vm.newItem = {};
-                vm.categoryId;
-                vm.userId;
+                vm.recipeImages;
+                
 
 
                 vm.get = function () {
@@ -39,7 +39,7 @@
                         recipeService.getRecipes(vm.pageNumber, pageSize).success(function (data) {
                             vm.recipes = data;
                         }).error(function (error) {
-                            console.log('Unable to get alergen: ' + error.message);
+                            console.log('Unable to get recipe: ' + error.message);
                         });
                     }
 
@@ -49,6 +49,10 @@
                     vm.showTable = false;
                     vm.selected = item;
                     vm.showDetails = true;
+                    
+                    recipeService.getImages(vm.selected.Id, 1, 1).success(function (data) {
+                          vm.recipeImages = data;
+                    });
                     
                    
                 };
@@ -86,12 +90,15 @@
                };
 
                vm.put = function (item) {
+
+                   //var itemToSend = vm.selected;
                   
                    vm.selected.RecipeTitle = item.RecipeTitle;
                    vm.selected.Abrv = item.Abrv;
                    vm.selected.RecipeComplexity = item.RecipeComplexity;
                    vm.selected.RecipeDescription = item.RecipeDescription;
                    vm.selected.RecipeText = item.RecipeText;
+
                    vm.selected.Id = item.Id;
                    vm.selected.CategoryId = item.CategoryId;
                    vm.selected.UserId = item.UserId;

@@ -8,7 +8,8 @@
         alergen: 'http://localhost:54167/api/Alergen',
         ingradient: 'http://localhost:54167/api/Ingradient',
         category: 'http://localhost:54167/api/Category',
-        recipe: 'http://localhost:54167/api/Recipe'
+        recipe: 'http://localhost:54167/api/Recipe',
+        images: 'http://localhost:54167/api/recipePicture'
     });
 
 

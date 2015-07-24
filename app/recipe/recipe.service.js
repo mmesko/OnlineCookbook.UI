@@ -24,6 +24,11 @@
                     return $http.get(routePrefix.recipe + "/" + pageNumber + "/" + pageSize);
                 },
 
+                // Get images that belong to game
+                getImages: function (recipeId, pageNumber, pageSize) {
+                    return $http.get(routePrefix.images + "/" + recipeId + "/" + pageNumber + "/" + pageSize);
+                },
+
                 postRecipe: function (data) {
 
                     var token = $window.localStorage.token;
@@ -46,7 +51,7 @@
 
                         method: 'put',
                         url: routePrefix.recipe + "/" + data.Id,
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded' },
                         data: $.param(data)
 
                     })

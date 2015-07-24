@@ -16,6 +16,8 @@
                 <td><strong>Description</strong></td>
                 <td>Complexity</td>
                 <td>Details</td>
+                <td></td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
@@ -25,18 +27,30 @@
                 <td>{{recipe.RecipeDescription}}</td>
                 <td>{{recipe.RecipeComplexity}}</td>
                 <td><a ng-click="vm.getItemDetails(recipe)">show recipe</a></td>
-            </tr>
+                <td><a ng-click="vm.showEdit(recipe)" class="btn btn-small btn-primary">Edit</a></td>
+                <td>  <a ng-click="vm.delete(recipe)" class="btn btn-small btn-danger">Delete</a></td> 
+</tr>
 
         </tbody>
     </table>
 
     <div ng-if="vm.showDetails" align="center">
         <h3><font color="E9967A"> {{vm.selected.RecipeTitle}} </font></h3><br />
+
+      
+
+        
+        <div class="col-sm-offset-1 col-sm-4">
+            <div ng-repeat="image in vm.recipeImages">
+                <img ng-src="data:image/png;base64,{{image.Picture}}" />
+
+            </div>
+        </div>
+
         <h4><b>{{vm.selected.RecipeDescription}}</b></h4><br />
         <h4>{{vm.selected.RecipeComplexity}},{{vm.selected.Abrv}}</h4><br />
         <h5>{{vm.selected.RecipeText}}</h5><br />
-        <a ng-click="vm.showEdit(recipe)" class="btn btn-small btn-primary">Edit</a>
-        <a ng-click="vm.delete(recipe)" class="btn btn-small btn-danger">Delete</a>
+        
     </div>
 
     <div ng-if="vm.showAddView" align="center" class="recipe-container">
@@ -131,4 +145,5 @@
         </div>
     </div>
 
+</div>
 </div>
