@@ -35,6 +35,13 @@
                     controller: 'RecipeController',
                     controllerAs: 'vm'
                 })
+                 .when('/recipe/:recipeTitle/:categoryId',
+                 {
+                     templateUrl: 'app/recipe/recipe.html',
+                     controller: 'RecipeController',
+                     controllerAs: 'vm',
+                     reloadOnSearch: false
+                 })
                 
                 
                 .otherwise({

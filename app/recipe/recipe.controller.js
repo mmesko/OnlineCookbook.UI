@@ -20,6 +20,9 @@
                 vm.showEditView = false;
                 vm.newItem = {};
                 vm.recipeImages;
+                vm.categoryId;
+
+                
                 
 
 
@@ -27,7 +30,7 @@
 
                     if (vm.searchString.length > 0) {
 
-                        recpeService.getRecipesByName(vm.searchString).success(function (data) {
+                        recipeService.getRecipesByName(vm.searchString).success(function (data) {
                             console.log(data);
                             vm.recipes = data;
                         }).error(function (error) {
@@ -36,7 +39,7 @@
                     }
                     else {
                         //inace mi dohvati sve
-                        recipeService.getRecipes(vm.pageNumber, pageSize).success(function (data) {
+                        recipeService.getRecipes(vm.categoryId, vm.pageNumber, pageSize).success(function (data) {
                             vm.recipes = data;
                         }).error(function (error) {
                             console.log('Unable to get recipe: ' + error.message);
@@ -46,7 +49,7 @@
                 };
         
                 vm.getItemDetails = function (item) {
-                    vm.recipes= [];                //Empty array
+                    vm.recipes= [];               
                     vm.recipe = item;
                     vm.showTable = false;
                     vm.showDetails = true;
@@ -58,12 +61,30 @@
                    
                 };
 
+        
+                vm.nextInRecipesList = function () {
+                    vm.pageNumber++;
+
+                    vm.get();
+                };
+
+      
+                vm.backInRecipesList = function () {
+
+                    vm.pageNumber--;
+                    if (vm.pageNumber < 1)
+                        vm.pageNumber = 1;
+
+                    vm.get();
+                };
+
                 vm.showEdit = function (item) {
                     vm.selected = {};
                     vm.selected = item;
                     vm.showDetails = false;
                     vm.showEditView = true;
                     vm.showAddView = false;
+                    vm.showTable = false;
                 };
 
                vm.showAdd = function () {

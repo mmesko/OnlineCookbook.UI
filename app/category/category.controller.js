@@ -3,8 +3,8 @@
     'use strict';
 
     angular.module('onlineCookbook')
-        .controller('CategoryController', ['categoryService', '$window','$scope',
-            function (categoryService, $window, $scope) {
+        .controller('CategoryController', ['categoryService', '$window','$scope','$location',
+            function (categoryService, $window, $scope,$location) {
 
                 var ct = $scope.ct = {};
 
@@ -90,7 +90,7 @@
                     ct.selected.Abrv = item.Abrv;
                     ct.selected.Id = item.Id;
 
-                    CategoryService.putCategory(ct.selected)
+                    categoryService.putCategory(ct.selected)
                        .success(function (data) {
                            ct.selected = data;
                            $window.alert("Ingradient changed!");
@@ -103,6 +103,18 @@
                            console.log(data);
                        });
                 };
+
+                // Navigates to recipe page with recipe title as parameter
+                ct.goToRecipe = function (recipe) {
+                    
+                    var rec = '/recipe/' + recipe.RecipeTitle + "/" + recipe.CategoryId;
+                    $location.path(rec);
+                 
+                }
+               
+
+                ct.get();
+
 
 
             }]);

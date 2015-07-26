@@ -11,6 +11,7 @@
 
                 // Get alergen by name
                 getRecipesByName: function (name) {
+                    
                     return $http.get(routePrefix.recipe + "/getByName/" + name);
                 },
 
@@ -27,7 +28,7 @@
                 // Get images that belong to recipe
                 getImages: function (recipeId, pageNumber, pageSize) {
                     
-                    return $http.get(routePrefix.images + "/" + recipeId + "/" + pageNumber + "/" + pageSize);
+                    return $http.get(routePrefix.recipe_picture + "/" + recipeId + "/" + pageNumber + "/" + pageSize);
                 },
 
                 postRecipe: function (data) {

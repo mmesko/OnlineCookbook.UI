@@ -1,147 +1,162 @@
 ﻿<div>
-<div class="recipeList" ng-controller="RecipeController">
-    <h4 class="page-header">Recipes list</h4>
-    <div>
-        <input type="text" ng-model="vm.searchString" placeholder="Search Name">
-        <button ng-click="vm.get()">Search</button>
-        <button ng-click="vm.showAdd()" title="Add" class="btn btn-primary pull-right"><i class="icon-white icon-plus"></i> Add </button>
-    </div>
-    <br />
-    <!-- Topic table -->
-    <table class="big-top-buffer table table-bordered" ng-if="vm.showTable">
-        <thead>
-            <tr>
-                <td></td>
-                <td><strong>Recipe</strong></td>
-                <td><strong>Description</strong></td>
-                <td>Complexity</td>
-                <td>Details</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="item in vm.recipes">
-                <td>{{$index + 1}}.</td>
-                <td>{{item.RecipeTitle}}</td>
-                <td>{{item.RecipeDescription}}</td>
-                <td>{{item.RecipeComplexity}}</td>
-                <td><a ng-click="vm.getItemDetails(item)">show recipe</a></td>
-                <td><a ng-click="vm.showEdit(item)" class="btn btn-small btn-primary">Edit</a></td>
-                <td><a ng-click="vm.delete(item)" class="btn btn-small btn-danger">Delete</a></td> 
-             </tr>
-
-        </tbody>
-    </table>
-
-    <div ng-if="vm.showDetails" align="center">
-        <h3><font color="E9967A"> {{vm.recipe.RecipeTitle}} </font></h3><br />
-
-        
-        <div class="col-sm-offset-1 col-sm-4">
-            <div ng-repeat="image in vm.recipeImages">
-                <img ng-src="data:image/png;base64,{{image.Picture}}" />
-
-            </div>
-        </div>
-
-        <h4><b>{{vm.recipe.RecipeDescription}}</b></h4><br />
-        <h4>{{vm.recipe.RecipeComplexity}},{{vm.recipe.Abrv}}</h4><br />
-        <h5>{{vm.recipe.RecipeText}}</h5><br />
-        
-    </div>
-
-    <div ng-if="vm.showAddView" align="center" class="recipe-container">
-
-        <h4>Add Recipe</h4>
-                  <div class="control-group">
-                <label class="control-label" for="title">Title:</label>
-                <div class="controls">
-                    <input ng-model="vm.newItem.RecipeTitle" style="width: 300px" id="title">
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label" for="abrv">Abrv:</label>
-                <div class="controls">
-                    <input ng-model="vm.newItem.Abrv" style="width: 300px" id="title">
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label" for="complex">Complexity:</label>
-                <div class="controls">
-                    <input ng-model="vm.newItem.RecipeComplexity" style="width: 300px" id="title">
-                </div>
-            </div>
-
-
-            <div class="control-group">
-                <label class="control-label" for="description">Description:</label>
-                <div class="controls" >
-                    <textarea ng-model="vm.newItem.RecipeDescription" style="width: 300px" id=" description"></textarea>
-                </div>
-            </div>
-
-
-            <div class="control-group">
-                <label class="control-label" for="instructions">Instructions:</label>
-                <div class="controls" >
-                    <textarea ng-model="vm.newItem.RecipeText" style="width: 300px; height: 150px;" id="instructions"></textarea>
-                </div>
-            </div>
-
-            <div>
-                <a href="javascript:void(0);" ng-click="vm.post(vm.newItem)" title="Update">
-                    <font color="E9967A"><b>Save</b></font>
-                </a>
-                <a href="javascript:void(0);" ng-click="vm.showAddView=false">
-                    <font color="E9967A"><b>Cancel</b></font>
-                </a>
-            </div>
-        
-
-    </div>
-
-    <div ng-show="vm.showEditView">
-
+    <div class="recipeList" ng-controller="RecipeController">
+        <h4 class="page-header">Recipes list</h4>
         <div>
-            <label for="editName"><font color="E9967A">Edit Name:</font></label><br>
-            <input type="text" id="editName" ng-model="vm.selected.RecipeTitle">
+            <input type="text" ng-model="vm.searchString" placeholder="Search Name" >
+            <button ng-click="vm.get()">Search</button>
+            <button ng-click="vm.showAdd()" title="Add" class="btn btn-primary pull-right"><i class="icon-white icon-plus"></i> Add </button>
         </div>
+        <br />
 
-        <div>
 
-            <label for="editAbrv"><font color="E9967A">Edit Abrv:</font></label><br>
-            <input type="text" id="editAbrv" ng-model="vm.selected.Abrv">
-        </div>
+        <div ng-if="vm.showTable">
+            <table class="table table-striped table-bordered table-condensed table-hover" align="center">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td><strong>Recipe</strong></td>
+                        <td><strong>Description</strong></td>
+                        <td>Complexity</td>
+                        <td>Details</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in vm.recipes">
+                        <td>{{($index+1) + (5 * (vm.pageNumber - 1))}}</td>
+                        <td>{{item.RecipeTitle}}</td>
+                        <td>{{item.RecipeDescription}}</td>
+                        <td>{{item.RecipeComplexity}}</td>
+                        <td><a ng-click="vm.getItemDetails(item)">show recipe</a></td>
+                        <td><a ng-click="vm.showEdit(item)" class="btn btn-small btn-primary">Edit</a></td>
+                        <td><a ng-click="vm.delete(item)" class="btn btn-small btn-danger">Delete</a></td>
+                    </tr>
 
-        <div>
+                </tbody>
+            </table>
 
-            <label for="editAbrv"><font color="E9967A">Edit Instructions:</font></label><br>
-            <input type="text" id="editText" ng-model="vm.selected.RecipeText">
-        </div>
+            <button ng-if="vm.pageNumber !== 1" class="btn btn-sm btn-warning" ng-click="al.backInRecipesList()">
+                <span class="glyphicon glyphicon-menu-left"></span>
+                &laquo; Previous
+            </button>
+
+            <button ng-if="vm.recipes.length === 5" class="btn btn-sm btn-warning pull-right" ng-click="al.nextInRecipesList()">
+                Next &raquo;
+                <span class="glyphicon glyphicon-menu-right  col-sm-offset-1"></span>
+            </button>  
        
-        <div>
+</div>
 
-            <label for="editAbrv"><font color="E9967A">Edit Complexity:</font></label><br>
-            <input type="text" id="editComp" ng-model="vm.selected.RecipeComplexity">
-        </div>
-        <div>
+        <div ng-if="vm.showDetails" align="center">
+            <div class="page-header">
+            <h3 ><font color="E9967A"> {{vm.recipe.RecipeTitle}} </font></h3>
+            <h4><b>{{vm.recipe.RecipeDescription}}</b></h4><br /></div>
+           
+            <div class="col-sm-offset-1 col-sm-4">
+                <div ng-repeat="image in vm.recipeImages">
+                    <img ng-src="data:image/png;base64,{{image.Picture}}" />
+                </div>
+            </div>
 
-            <label for="editAbrv"><font color="E9967A">Edit Description:</font></label><br>
-            <input type="text" id="editDes" ng-model="vm.selected.RecipeDescription">
-        </div>
-        
-        <div>
-            <a href="javascript:void(0);" ng-click="vm.put(vm.selected)" title="Update">
-                <font color="E9967A"><b>Save</b></font>
-            </a>
-            <a href="javascript:void(0);" ng-click="vm.showEditView=false">
-                <font color="E9967A"><b>Cancel</b></font>
-            </a>
+            <div class="col-sm-offset-3 col-sm-4" >
+                <h5 align="pull-right"> <pre>{{vm.recipe.RecipeText}}</pre></h5>
+             </div>
+            </div>
+
+           
+
+            <div ng-if="vm.showAddView" align="center" class="recipe-container">
+
+                <h4>Add Recipe</h4>
+                <div class="control-group">
+                    <label class="control-label" for="title">Title:</label>
+                    <div class="controls">
+                        <input ng-model="vm.newItem.RecipeTitle" style="width: 300px" id="title">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="abrv">Abrv:</label>
+                    <div class="controls">
+                        <input ng-model="vm.newItem.Abrv" style="width: 300px" id="title">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="complex">Complexity:</label>
+                    <div class="controls">
+                        <input ng-model="vm.newItem.RecipeComplexity" style="width: 300px" id="title">
+                    </div>
+                </div>
+
+
+                <div class="control-group">
+                    <label class="control-label" for="description">Description:</label>
+                    <div class="controls">
+                        <pre ng-model="vm.newItem.RecipeDescription" style="width: 300px" id=" description"></pre>
+                    </div>
+                </div>
+
+
+                <div class="control-group">
+                    <label class="control-label" for="instructions">Instructions:</label>
+                    <div class="controls">
+                        <textarea ng-model="vm.newItem.RecipeText" rows="15" cols="50"></textarea>
+                    </div>
+                </div>
+
+                <div>
+                    <a href="javascript:void(0);" ng-click="vm.post(vm.newItem)" title="Update">
+                        <font color="E9967A"><b>Save</b></font>
+                    </a>
+                    <a href="javascript:void(0);" ng-click="vm.showAddView=false">
+                        <font color="E9967A"><b>Cancel</b></font>
+                    </a>
+                </div>
+
+
+            </div>
+
+            <div ng-if="vm.showEditView" align="center">
+
+                <div>
+                    <label for="editName"><font color="E9967A">Edit Name:</font></label><br>
+                    <input type="text" id="editName" ng-model="vm.selected.RecipeTitle">
+                </div>
+
+                <div>
+
+                    <label for="editAbrv"><font color="E9967A">Edit Abrv:</font></label><br>
+                    <input type="text" id="editAbrv" ng-model="vm.selected.Abrv">
+                </div>
+
+                <div>
+
+                    <label for="editAbrv"><font color="E9967A">Edit Description:</font></label><br>
+                    <input type="text" id="editText" ng-model="vm.selected.RecipeDescription">
+                </div>
+
+                <div>
+
+                    <label for="editAbrv"><font color="E9967A">Edit Complexity:</font></label><br>
+                    <input type="text" id="editComp" ng-model="vm.selected.RecipeComplexity">
+                </div>
+
+                <div>
+
+                    <label for="editAbrv"><font color="E9967A">Edit Steps:</font></label><br>
+                    <textarea type="text" id="editDes" style="width: 500px; height: 150px" ng-model="vm.selected.RecipeText"></textarea>
+                </div>
+
+                <div>
+                    <a href="javascript:void(0);" ng-click="vm.put(vm.selected)" title="Update">
+                        <font color="E9967A"><b>Save</b></font>
+                    </a>
+                    <a href="javascript:void(0);" ng-click="vm.showEditView=false">
+                        <font color="E9967A"><b>Cancel</b></font>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-
-</div>
-</div>

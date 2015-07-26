@@ -20,7 +20,7 @@
                 <tr>
                     <th data-field="name" data-sortable="true"></th>
                     <th data-field="name" data-sortable="true"><font color="E9967A">CategoryName</font></th>
-                    <th data-field="abrv" data-sortable="true"><font color="E9967A">Category Abrv</font></th>
+                   
                     <th style="width:20px;"> </th>
                    
                 </tr>
@@ -28,14 +28,13 @@
 
             </thead>
 
-            <tr ng-repeat="category in ct.categorys">
+            <tr ng-repeat="category in ct.categorys" >
 
                 <td class="tdCenter"><a href="#"><img ng-src="images/category/kifla.png" alt="{{category.CategoryName}}" /></a></td>
-                <td>{{category.CategoryName}}</td>
-                <td>{{category.Abrv}}</td>
-
+                <td><a ng-click="ct.goToRecipe(category)">{{category.CategoryName}}</a></td>
+                
                 <td><a ng-click="ct.showEdit(category)" class="btn btn-small btn-primary">Edit</a></td>
-               
+
             </tr>
         </table>
 
